@@ -1,257 +1,122 @@
-from Classes import *
+from Classes import*
 import os
 
-usuario = Usuário()
-ploja = Produtos_Loja()
 
 def main():
-    sair = False
-    while sair == False:
+
+    def op_invalida():
+        print("\n Opção inválida. \n")
+        os.system("pause")
+        os.system("cls")
+
+    y = 0
+    trava = 0
+
+    cliente = Cliente()
+    banco = Banco()
+    
+    while y == 0:
         try:
-            os.system("cls")
-            print("---BEM VINDO A PAPELARIA MOON---")
-            print("---MENU INICIAL---")
-            print("01 - CADASTRAR")
-            print("02 - LOGIN")
-            print("00 - SAIR")
-            print("--------")
-            print ("")
-
-            print ("Qual opção deseja?")
+            print ("BEM-VINDO AO BANCO MMALT-PAY!")
+            print ("O que você deseja fazer?")
+            print ("[1] CADASTRO")
+            print ("[2] LOGIN")
+            print ("[3] SAIR")
             menu = int(input(">> "))
-            os.system ("pause")
-
             match menu:
                 case 1:
-                    os.system ("cls")
-                    print ("---CADASTRAR---")
-                    print ("INFORME OS SEUS DADOS")
-                    nome = input ("Nome - ")
-                    email = input ("Email - ")
-                    senha = input("Senha - ")
-                
-                    usuario.cadastrarCliente (nome, email, senha)
-                
-                    print ("VOCÊ FOI CADASTRADO")
-                    print ("-------------------")
-                    os.system("pause")
+                    try:
+                        trava = 1
+                        os.system("cls")
+                        print("Preencha as informações abaixo para se cadastrar: \n")
+                        nome = input("Nome: ")
+                        cpf = int(input("CPF: "))
+                        email = input("Email: ")
+                        senha = input("Digite sua senha: ")
+                        banco.adicionar_cliente(nome, cpf, email, senha)
 
-                case 2:
-                    os.system("cls")
-                    print ("---LOGIN---")
-                    print ("INFORME OS SEUS DADOS")
-                    nome = input ("Email - ")
-                    senha = input("Senha - ")
+                        if idade < 18:
+                            print("\nDesculpe, você não pode ter uma conta se for menor de 18 anos.")
+                            
+                        else:
+                            print("\nUsuário cadastrado com sucesso!")
+                        op = int(input("\n [1] Voltar \n [2] Sair \n \nDigite a opção desejada: ")) #Opções para voltar/sair do software.
 
-                    resultado = usuario.verificar_usuario(email,senha)
-                    print (resultado)
-                    os.system("pause")
-
-
-
-
-
-                    if resultado == 'ACESSO LIBERADO':
-                        s = 0
-                        while s == 0:
+                        if op == 1: #Voltar
+                            y = 0
+        
                             os.system("cls")
-                            print("---MENU---")
-                            print("01 - CADASTRAR PRODUTO")
-                            print("02 - LISTAR PRODUTOS")
-                            print("03 - ADICIONAR AO CARRINHO")
-                            print("04 - VISUALIZAR CARRINHO")
-                            print("05 - EXCLUIR PRODUTO DO CARRINHO")
-                            print("06 - VOLTAR")
-                            print("00 - SAIR")
-                            print("--------")
-                            print ("") 
 
-                            print ("Qual opção deseja?")
+                        elif op == 2: #Sair
+                            y = 1
+                        
 
-                            menu2 = int(input(">> "))
+                        else: #Opção inválida
+                            op_invalida()
+                            
+                    except Exception in erro:
+                        op_invalida()
 
-                            os.system ("pause")
+                    if trava == 1: #teste
+                        os.system("cls")
+                        print("Preencha as informações para acessar sua conta. \n")
+                        cpf = int(input("CPF: "))
+                        senhaa = getpass.getpass("Digite sua senha: ")
+                        cliente_encontrado = banco.validar_cliente_por_cpf_e_senha(cpf, senhaa)
 
-                            l = 0
-                            while l == 0:
-                                match menu2:
-                                    case 1:
-                                        os.system ("cls")
-                                        print ("---CADASTRAR PRODUTO---")
-                                        print ("INFORME AS INFORMAÇÕES NECESSÁRIAS")
-
-                                        nome2 = input ("Qual o nome do produto? \n >>")
-                                        valor = float(input ("Qual o valor do produto? \n >>"))
-                                        
-
-                                        produtos = ploja.cadastrar_produto(nome2, valor)
-                                        print (produtos)
-                                        os.system("pause")
-
-                                        if produtos == 'PRODUTO ADICIONADO':
-                                            z = 0
-                                            while z == 0:
-                                                os.system("cls")
-                                                print("PRODUTO ADICIONADO")
-                                                print("---O QUE DESEJA FAZER AGORA?---")
-                                                print("01 - ADICIONAR OUTRO PRODUTO")
-                                                print("02 - VOLTAR PARA O MENU")
-                                                print("03 - VOLTAR PARA O MENU INICIAL")
-                                                print("00 - SAIR")
-                                                print("--------")
-                                                print ("") 
-
-                                                print ("Qual opção deseja?")
-
-                                                menu3 = int(input(">> "))
-
-                                                os.system ("pause")
-
-                                                match menu3:
-                                                    case 1:
-                                                        z = 1
-
-                                                    case 2:
-                                                        z = 1
-                                                        l = 1
-
-                                                    case 3:
-                                                        z = 1
-                                                        l = 1
-                                                        s = 1
-
-                                                    case 0:
-                                                        print ("SAINDO...")
-                                                        print ("------")
-                                                        z = 1
-                                                        l = 1
-                                                        s = 1
-                                                        sair = True
-
-                                                    case _:
-                                                        print("Valor inválido")
-                                                        print ("-------")
-
-                                        os.system("pause")
-                                    
-                                    case 2:
-                                        ploja.listar_produtos()
-                                        l = 1
-                                        os.system("pause")
-                                        g = 0
-                                        while g == 0:
-                                            os.system("cls")
-                                            print("---O QUE DESEJA FAZER AGORA?---")
-                                            print("01 - VOLTAR PARA O MENU")
-                                            print("02 - VOLTAR PARA O MENU INICIAL")
-                                            print("00 - SAIR")
-                                            print("--------")
-                                            print ("") 
-
-                                            print ("Qual opção deseja?")
-
-                                            menu4 = int(input(">> "))
-
-                                            os.system ("pause")
-
-                                            match menu4:
-                                                case 1:
-                                                    g = 1
-                                                    l = 1
-
-                                                case 2:
-                                                    g = 1
-                                                    l = 1
-                                                    s = 1
-
-                                                case 0:
-                                                    print ("SAINDO...")
-                                                    print ("------")
-                                                    g = 1
-                                                    l = 1
-                                                    s = 1
-                                                    sair = True
-
-                                                case _:
-                                                    print("Valor inválido")
-                                                    print ("-------")
-                                           
-
-                                    case 3:
-                                        ploja.listar_produtos()
-                                        f = 1
-                                        os.system("pause")
-                                        g = 0
-                                        while g == 0:
-                                            os.system("cls")
-                                            print("---O QUE DESEJA FAZER AGORA?---")
-                                            print("01 - VOLTAR PARA O MENU")
-                                            print("02 - VOLTAR PARA O MENU INICIAL")
-                                            print("00 - SAIR")
-                                            print("--------")
-                                            print ("") 
-
-                                            print ("Qual opção deseja?")
-
-                                            menu4 = int(input(">> "))
-
-                                            os.system ("pause")
-
-                                            match menu4:
-                                                case 1:
-                                                    g = 1
-                                                    f = 1
-
-                                                case 2:
-                                                    g = 1
-                                                    f = 1
-                                                    s = 1
-
-                                                case 0:
-                                                    print ("SAINDO...")
-                                                    print ("------")
-                                                    g = 1
-                                                    f = 1
-                                                    s = 1
-                                                    sair = True
-
-                                                case _:
-                                                    print("Valor inválido")
-                                                    print ("-------")
-
-                                    case 4:
-                                        pass
-
-                                    case 5:
-                                        pass
-
-                                    case 6:
-                                        l = 1
-                                        s = 1
-
-                                    case 0:
-                                        print ("SAINDO...")
-                                        print ("------")
-                                        l = 1
-                                        s = 1
-                                        sair = True
-
-                                    case _:
-                                        print("Valor inválido")
-                                        print ("-------")
-
-        
-
-                case 0:
-                    print ("SAINDO...")
-                    print ("------")
-                    sair = True
-
+                        if cliente_encontrado:
+                            os.system("cls")
+                            op = int(input("[1] Transferência \n [2] Depósito \n [3] Saque \n [4] Alterar dados \n [5] Excluir conta  \n [6] Voltar \n \n Digite a opção desejada: "))
+                            match op:
+                                case 1:
+                                    print("Lógica tranferência")
+                                    cliente.transferencia()
+                                case 2:
+                                    print("Lógica depósito")
+                                    cliente.depositar()
+                                case 3:
+                                    print("Lógica saque")
+                                    cliente.sacar()
+                                case 4:
+                                    os.system("cls")
+                                    menu2 = int(input("\n O que você deseja alterar? \n \n [1] Nome \n [2] Email \n [3] Telefone \n [4] CPF \n [5] Senha \n [6] Idade \n \n Digite a opção desejada: "))
+                                    match menu2:
+                                        case 1:
+                                            novo_nome = input("Digite o novo nome: ")
+                                            cliente.setNome(novo_nome)
+                                        case 2:
+                                            novo_email = input("Digite o novo email: ")
+                                            cliente.setEmail(novo_email)
+                                        case 3:
+                                            novo_telefone = input("Digite o novo telefone: ")
+                                            cliente.setTelefone(novo_telefone)
+                                        case 4:   
+                                            novo_cpf = input("Digite o novo CPF: ")
+                                            cliente.setCPF(novo_cpf)
+                                        case 5:
+                                            nova_senha = input("Digite a nova senha: ")
+                                            cliente.setSenha(nova_senha)
+                                        case 6:
+                                            nova_idade = input("Digite a nova idade: ")
+                                            cliente.setIdade(nova_idade)
+                            
+                                case 5:
+                                    print("Lógica excluir conta")
+                                case 6:
+                                    os.system("cls")
+                                case _:
+                                    op_invalida()
+                        else:
+                            print("Cliente não encontrado.")
+                
+                
+                case 3:
+                    y = 1
+                
                 case _:
-                    print("Valor inválido")
-                    print ("-------")
-        
+                    op_invalida()
+
         except Exception as erro:
-            print ("Valor inválido")
-            print (erro.__class__.__name__)
-            print("")
+            print("\n Opção inválida. \n")
+            os.system("pause")
+            os.system("cls")
