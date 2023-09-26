@@ -8,10 +8,7 @@ def main():
         print("\n Opção inválida. \n")
         os.system("pause")
         os.system("cls")
-
-    y = 0
-    trava = 0
-
+    
     cliente = Cliente()
     banco = Banco()
     
@@ -32,25 +29,24 @@ def main():
                         nome = input("Nome: ")
                         cpf = int(input("CPF: "))
                         email = input("Email: ")
+                        idade = int(input("Idade: "))
                         senha = input("Digite sua senha: ")
-                        banco.adicionar_cliente(nome, cpf, email, senha)
+                        banco.adicionar_cliente(nome, cpf, email, idade, senha)
 
                         if idade < 18:
-                            print("\nDesculpe, você não pode ter uma conta se for menor de 18 anos.")
-                            
+                            print("\nDesculpe, você não pode ter uma conta se sua idade for menor de 18 anos.")     
                         else:
-                            print("\nUsuário cadastrado com sucesso!")
-                        op = int(input("\n [1] Voltar \n [2] Sair \n \nDigite a opção desejada: ")) #Opções para voltar/sair do software.
+                            print("\n Usuário cadastrado com sucesso!")
+
+                        op = int(input("\n [1] Voltar \n [2] Sair \n \nDigite a opção desejada: "))
 
                         if op == 1: #Voltar
                             y = 0
-        
                             os.system("cls")
 
                         elif op == 2: #Sair
                             y = 1
-                        
-
+                    
                         else: #Opção inválida
                             op_invalida()
                             
