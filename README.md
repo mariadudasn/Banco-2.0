@@ -6,7 +6,8 @@ Sobre: ...
 Requisitos mínimos:
 
 - Cadastrar cliente;
-- excluir cliente;
-- alterar cliente;
-- tranferência entre contas de clientes;
-- deposito e saque de dinheiro.
+- Excluir cliente;
+- Alterar cliente;
+- Tranferência entre contas de clientes;
+- Deposito e saque de dinheiro;
+- Listar clientes.

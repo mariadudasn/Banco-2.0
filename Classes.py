@@ -3,6 +3,9 @@ class Banco:
     def __init__(self):
         self.clientes = {}
     
+    def getClientes (self):
+        return self.clientes
+    
     def cadastrarCliente (self, nome, cpf, email, idade, senha, senhaMovimentacoes):
         self.nome = nome
         self.cpf = cpf
@@ -18,7 +21,6 @@ class Banco:
                 return "ACESSO LIBERADO"
             else:
                 return "ACESSO NEGADO"
-    
     
     def validarClientecpf (self,cpf):
         for cliente in self.clientes:
