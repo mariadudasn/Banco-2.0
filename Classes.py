@@ -6,8 +6,8 @@ class Banco:
     def getClientes (self):
         return self.clientes
     
-    def cadastrarCliente (self, nome, cpf, email, idade, senha, senhaMovimentacoes):
-        self.clientes[cpf] = {'Nome': nome, 'Email:': email, 'Idade:':idade, 'Senha': senha, 'Senha para movimentações': senhaMovimentacoes}
+    def cadastrarCliente (self, cliente):
+        self.clientes[cliente.cpf] = {'Nome': cliente.nome, 'Email:': cliente.email, 'Idade:':cliente.idade, 'Senha': cliente.senha, 'Senha para movimentações': cliente.senhaMovimentacoes}
      
     def validarCliente(self, cpf, senha):
         for cliente in self.clientes:
