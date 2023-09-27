@@ -10,7 +10,7 @@ class Banco:
         self.idade = idade
         self.senha = senha
         self.senhaMovimentacoes = senhaMovimentacoes
-        self.clientes[nome] = {'CPF': cpf, 'Email:': email, 'Idade:':idade, 'Senha': senha, 'Senha para movimentações': senhaMovimentacoes}
+        self.clientes[cpf] = {'Nome': nome, 'Email:': email, 'Idade:':idade, 'Senha': senha, 'Senha para movimentações': senhaMovimentacoes}
      
     def validarCliente(self, cpf, senha):
         for cliente in self.clientes:
@@ -57,20 +57,10 @@ class Cliente:
     def getSaldo(self):
         return self.saldo
 
-    def transferencia (self, valor, cpf_origem, cliente_destino, saldo):
-        cliente_a.saldo = cliente_a.depositar()
-        cliente_b.saldo = cliente_b.depositar()
-            
-        cliente_a = Banco.validar_cliente_por_cpf_e_senha()
-
-        if cpf and senha in clientes:
-            cliente_b = int (input("Informe o CPF do destinatário",cpf))
-            for cpf, in clientes:
-                valor = float (input("Informe a quantia que deseja transferir:"))
-                cliente_b.saldo = cliente_b.saldo + valor
-                cliente_a.saldo = cliente_a.saldo - valor
-                print ("Transferencia no valor de R$",valor, "concluída")
-            else:
-                print ("Usuário não encontrado")
+    def transferencia (self, valor, cpfDestinatario):
+        if self.saldo >= valor:
+            self.saldo -= valor
+            cpfDestinatario.depositar(valor)
+            print(f"Transferência de R${valor:.2f} realizada para {cpfDestinatario.nome}. Novo saldo: R${self.saldo:.2f}")
         else:
-            print ("Usuário não encontrado")
+            print("Saldo insuficiente para a transferência.")

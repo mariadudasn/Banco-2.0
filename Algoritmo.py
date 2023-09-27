@@ -81,7 +81,14 @@ def main():
                                     if validacao4 == 'ACESSO LIBERADO':
                                         print("Digite o cpf do destinatário: ")
                                         cpfdes = input(">> ")
-                                        validacao5 = banco.validarCliente()
+                                        validacao5 = banco.validarDestinatario(cpfdes)
+
+                                        if validacao5 == 'CLIENTE ENCONTRADO':
+                                            print("Digite o valor que deseja transferir: ")
+                                            valor = input(">> ")
+
+                                            cliente.transferencia(valor, cpfdes)
+
 
                     except Exception:
                         op_invalida()
