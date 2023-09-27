@@ -3,12 +3,18 @@ class Banco:
     def __init__(self):
         self.clientes = {}
     
-    def getClientes (self):
+    def getClientes(self):
         return self.clientes
     
     def cadastrarCliente (self, cliente):
-        self.clientes[cliente.cpf] = {'Nome': cliente.nome, 'Email:': cliente.email, 'Idade:':cliente.idade, 'Senha': cliente.senha, 'Senha para movimentações': cliente.senhaMovimentacoes}
-     
+        self.clientes[cliente.cpf] = {
+            'Nome': cliente.nome, 
+            'Email:': cliente.email, 
+            'Idade:':cliente.idade, 
+            'Senha': cliente.senha, 
+            'Senha para movimentações': cliente.senhaMovimentacoes
+            }
+
     def validarCliente(self, cpf, senha):
         if cpf in self.clientes:
             if self.clientes[cpf]["Senha"] == senha:
@@ -19,10 +25,10 @@ class Banco:
             return "CPF não encontrado"
         
     def validarClientecpf (self,cpf):
-        for cliente in self.clientes.values():
-            if cliente['CPF'] == cpf:
-                return "CLIENTE ENCONTRADO"
-        return "CLIENTE NÃO ENCONTRADO"
+        if cpf in self.clientes:
+            return "CLIENTE ENCONTRADO"
+        else:
+            return "CLIENTE NÃO ENCONTRADO"
     
     def validarSenha (self, senhaMovimentacoes):
         for cliente in self.clientes.values():
