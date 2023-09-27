@@ -71,13 +71,14 @@ def main():
                                 
                                 if op2 == 1:
                                     print("DEPÓSITO")
-                                    print("Digite seu cpf para realizar o depósito: ")
-                                    cpf1 = input(">> ")
                                     print("Digite sua senha para realizar o depósito: ")
-                                    senham1 = input(">> ")
+                                    senhaMovimentacoes= input(">> ")
 
-                                    validacao2 = banco.validarSenha(cpf1, senham1)
+                                    validacao2 = banco.validarSenha(cpf, senhaMovimentacoes)
                                     if validacao2 == 'ACESSO LIBERADO':
+                                        print("Digite o valor a ser depositado: ")
+                                        valor = float(input(">> "))
+                                        cliente = banco.clientes[cpf]
                                         cliente.depositar(valor)
                                     else: 
                                         print("Senha incorreta")
@@ -86,13 +87,13 @@ def main():
 
                                 elif op2 == 2:
                                     print("SAQUE")
-                                    print("Digite seu cpf para realizar o depósito: ")
-                                    cpf2 = input(">> ")
                                     print("Digite sua senha para realizar o saque: ")
-                                    senham2 = input(">> ")
+                                    senhaMovimentacoes = input(">> ")
 
-                                    validacao3 = banco.validarSenha(cpf2, senham2)
+                                    validacao3 = banco.validarSenha(cpf, senhaMovimentacoes)
                                     if validacao3 == 'ACESSO LIBERADO':
+                                        valor = float(input(">> "))
+                                        cliente = banco.clientes[cpf]
                                         cliente.sacar(valor)
                                     else: 
                                         print("Senha incorreta")
@@ -100,12 +101,10 @@ def main():
                                 elif op2 == 3:
                                     print("TRANSFERÊNCIA")
                                     print (f"Seu saldo atual é de R${cliente.getSaldo():.2f}")
-                                    print("Digite seu cpf para realizar o depósito: ")
-                                    cpf3 = input(">> ")
                                     print("Digite sua senha para realizar a traferência: ")
-                                    senham3 = input(">> ")
+                                    senhaMovimentacoes = input(">> ")
 
-                                    validacao4 = banco.validarSenha(cpf3, senham3)
+                                    validacao4 = banco.validarSenha(cpf, senhaMovimentacoes)
                                     if validacao4 == 'ACESSO LIBERADO':
                                         print("Digite o cpf do destinatário: ")
                                         cpfdes = input(">> ")
@@ -115,6 +114,7 @@ def main():
                                             print("Digite o valor que deseja transferir: ")
                                             valor = float(input(">> "))
                                             destinatario = banco.clientes [cpfdes]
+                                            cliente = banco.clientes[cpf]
                                             cliente.transferencia(valor, destinatario)
                                     else: 
                                         print("Senha incorreta")

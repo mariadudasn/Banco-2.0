@@ -82,7 +82,7 @@ class Cliente:
         else:
             print(f'O valor de R${valor} passou do saldo que você possui.')
 
-    def depositar (self, valor):
+    def depositar(self, valor):
         if valor > 0:
             self.saldo += valor
             print(f"Depósito de R${valor:.2f} realizado. Novo saldo: R${self.saldo:.2f}") 
