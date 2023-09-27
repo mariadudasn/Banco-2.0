@@ -9,7 +9,6 @@ def main():
         os.system("pause")
         os.system("cls")
     
-    cliente = Cliente()
     banco = Banco()
     
     y = 0
@@ -31,7 +30,9 @@ def main():
                         idade = int(input("Idade: "))
                         senha = input("Digite sua senha: ")
                         senhaMovimentacoes = input("Digite uma senha para realizar transferências: ")
-                        banco.cadastrarCliente(nome, cpf, email, idade, senha, senhaMovimentacoes)
+
+                        cliente = Cliente(nome, cpf, email, idade, senha, senhaMovimentacoes)
+                        banco.cadastrarCliente(cliente)
 
                         if idade < 18:
                             print("\nDesculpe, você não pode ter uma conta se sua idade for menor de 18 anos.")     
