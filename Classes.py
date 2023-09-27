@@ -10,25 +10,25 @@ class Banco:
         self.clientes[cliente.cpf] = {'Nome': cliente.nome, 'Email:': cliente.email, 'Idade:':cliente.idade, 'Senha': cliente.senha, 'Senha para movimentações': cliente.senhaMovimentacoes}
      
     def validarCliente(self, cpf, senha):
-        for cliente in self.clientes:
-            if cliente["CPF"] == cpf and cliente["Senha"] == senha:
+        if cpf in self.clientes:
+            if self.clientes[cpf]["Senha"] == senha:
                 return "ACESSO LIBERADO"
             else:
-                return "ACESSO NEGADO"
-    
+                return "Senha incorreta"
+        else:
+            return "CPF não encontrado"
+        
     def validarClientecpf (self,cpf):
-        for cliente in self.clientes:
-            if cliente["CPF"] == cpf:
+        for cliente in self.clientes.values():
+            if cliente['CPF'] == cpf:
                 return "CLIENTE ENCONTRADO"
-            else:
-                return "CLIENTE NÃO ENCONTRADO"
+        return "CLIENTE NÃO ENCONTRADO"
     
     def validarSenha (self, senhaMovimentacoes):
-        for cliente in self._clientes:
+        for cliente in self.clientes.values():
             if cliente["Senha para movimentações"] == senhaMovimentacoes:
                 return "ACESSO LIBERADO"
-            else:
-                return "ACESSO NEGADO"
+        return "ACESSO NEGADO"
             
     def atualizarCadastro(self, nome=None, cpf=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
         if nome:

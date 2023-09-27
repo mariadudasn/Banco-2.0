@@ -14,6 +14,7 @@ def main():
     y = 0
     while y == 0:
         try:
+            os.system("cls")
             print ("BEM-VINDO AO BANCO MMALT-PAY!")
             print ("O que você deseja fazer?")
             print ("[1] CADASTRO")
@@ -41,14 +42,14 @@ def main():
 
                         op = int(input("\n [1] Voltar \n [2] Sair \n \nDigite a opção desejada: "))
 
-                        if op == 1: #Voltar
+                        if op == 1: 
                             y = 0
                             os.system("cls")
 
-                        elif op == 2: #Sair
+                        elif op == 2:
                             y = 1
                     
-                        else: #Opção inválida
+                        else: 
                             op_invalida()
 
                 case 2:
@@ -59,8 +60,11 @@ def main():
                         validacao = banco.validarCliente(cpf, senhaa)
 
                         if validacao == 'ACESSO LIBERADO':
+                            print("ACESSO LIBERADO")
                             os.system("cls")
-                            op2 = int(input("[1] DEPÓSITO \n [2] SAQUE \n [3] TRANSFERÊNCIA \n [4] ALTERAR DADOS \n [5] EXCLUIR CONTA \n [6] LISTAR CLIENTES \n [7] VOLTAR AO MENU INICIAL \n [8] SAIR \n \n Digite a opção desejada: "))
+                            print ("O QUE DESEJA FAZER?")
+                            print (" ")
+                            op2 = int(input(" [1] DEPÓSITO \n [2] SAQUE \n [3] TRANSFERÊNCIA \n [4] ALTERAR DADOS \n [5] EXCLUIR CONTA \n [6] LISTAR CLIENTES \n [7] VOLTAR AO MENU INICIAL \n [8] SAIR \n \n Digite a opção desejada: "))
                             match op2:
                                 case 1:
                                     print("DEPÓSITO")
@@ -129,18 +133,28 @@ def main():
                                     banco.getClientes()
 
                                 case 7:
+                                    print("VOLTANDO AO MENU INICIAL...")
+                                    os.system("pause")
                                     os.system("cls")
 
                                 case 8:
+                                    print("SAINDO...")
+                                    os.system("pause")
+                                    os.system("cls")
                                     y = 1
                                     break
 
                                 case _:
                                     op_invalida()
                         else:
-                            ("Senha ou CPF inválidos")
+                            print("Senha ou CPF inválidos")
+                            os.system("pause")
+                            os.system("cls")
                             
                 case 3:
+                    print("SAINDO...")
+                    os.system("pause")
+                    os.system("cls")
                     y = 1
                 
                 case _:
