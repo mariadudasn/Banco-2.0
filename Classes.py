@@ -49,9 +49,9 @@ class Banco:
             self.senhaMovimentacoes = senhaMovimentacoes
         print("Cadastro atualizado com sucesso.")
 
-    # def excluir_conta(self):
-    #     del self
-    #     print("Cliente excluído com sucesso.")
+    def excluirConta(self):
+        del self
+        print("Cliente excluído com sucesso.")
 
  
 class Cliente:

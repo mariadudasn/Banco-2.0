@@ -110,8 +110,8 @@ def main():
                                 case 4:
                                     print("ATUALIZAR DADOS")
                                     cpf = input("Digite o CPF do cliente a ser atualizado: ")
-                                    cliente = banco.validarClientecpf(cpf)
-                                    if cliente:
+                                    clientee = banco.validarClientecpf(cpf)
+                                    if clientee == "CLIENTE ENCONTRADO":
                                         novo_nome = input("Digite o novo nome (ou pressione Enter para manter o atual): ")
                                         novo_cpf = input("Digite o novo CPF (ou pressione Enter para manter o atual): ")
                                         novo_email = input("Digite o novo email (ou pressione Enter para manter o atual): ")
@@ -121,7 +121,11 @@ def main():
                                         banco.atualizarCadastro(novo_nome, novo_cpf, novo_email, nova_idade,nova_senha, nova_senhaMovimentacoes)
 
                                 case 5: 
-                                    pass
+                                    print("EXCLUIR CONTA")
+                                    cpf = input("Digite o CPF do cliente a ser excluido: ")
+                                    cliente2 = banco.validarClientecpf(cpf)
+                                    if cliente2 == 'CLIENTE ENCONTRADO':
+                                        banco.excluirConta()
                     except Exception:
                         op_invalida()
 
