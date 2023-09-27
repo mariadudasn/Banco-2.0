@@ -39,18 +39,21 @@ class Banco:
         else:
             return "CPF não encontrado"
             
-    def atualizarCadastro(self, nome=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
-        if nome:
-            self.nome = nome
-        if email:
-            self.email = email
-        if idade:
-            self.idade = idade
-        if senha:
-            self.senha = senha
-        if senhaMovimentacoes:
-            self.senhaMovimentacoes = senhaMovimentacoes
-            print("Cadastro atualizado com sucesso.")
+    def atualizarCadastro(self, cpf, nome=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
+        if cpf in self.clientes: 
+            if nome:
+                self.nome = nome
+            if email:
+                self.email = email
+            if idade:
+                self.idade = idade
+            if senha:
+                self.senha = senha
+            if senhaMovimentacoes:
+                self.senhaMovimentacoes = senhaMovimentacoes
+                print("Cadastro atualizado com sucesso.")
+            else:
+                print("CPF não encontrado.")
         else:
             print("CPF não encontrado.")
 
@@ -87,10 +90,10 @@ class Cliente:
     def getSaldo(self):
         return self.saldo
 
-    def transferencia (self, valor, cpfDestinatario):
+    def transferencia (self, valor, destinatario):
         if self.saldo >= valor:
             self.saldo -= valor
-            cpfDestinatario.depositar(valor)
-            print(f"Transferência de R${valor:.2f} realizada para {cpfDestinatario.nome}. Novo saldo: R${self.saldo:.2f}")
+            destinatario.depositar(valor)
+            print(f"Transferência de R${valor:.2f} realizada para {destinatario.nome}. Novo saldo: R${self.saldo:.2f}")
         else:
             print("Saldo insuficiente para a transferência.")
