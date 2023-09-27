@@ -67,17 +67,33 @@ def main():
                             match op2:
                                 case 1:
                                     print("DEPÓSITO")
-                                    cliente.depositar()
+                                    print("Digite sua senha para realizar o depósito: ")
+                                    senham1 = input(">> ")
+
+                                    validacao2 = banco.validarSenha(senham1)
+                                    if validacao2 == 'ACESSO LIBERADO':
+                                        cliente.depositar()
+                                    else: 
+                                        print("Senha incorreta")
+
                                 case 2:
                                     print("SAQUE")
-                                    cliente.sacar()
+                                    print("Digite sua senha para realizar o saque: ")
+                                    senham2 = input(">> ")
+
+                                    validacao3 = banco.validarSenha(senham2)
+                                    if validacao3 == 'ACESSO LIBERADO':
+                                        cliente.sacar()
+                                    else: 
+                                        print("Senha incorreta")
+                                 
                                 case 3:
                                     print("TRANSFERÊNCIA")
                                     print (f"Seu saldo atual é de R${getSaldo()}")
                                     print("Digite sua senha para realizar a traferência: ")
-                                    senham = input(">> ")
+                                    senham3 = input(">> ")
 
-                                    validacao4 = banco.validarSenha(senham)
+                                    validacao4 = banco.validarSenha(senham3)
                                     if validacao4 == 'ACESSO LIBERADO':
                                         print("Digite o cpf do destinatário: ")
                                         cpfdes = input(">> ")
@@ -88,6 +104,8 @@ def main():
                                             valor = input(">> ")
 
                                             cliente.transferencia(valor, cpfdes)
+                                    else: 
+                                        print("Senha incorreta")
 
 
                     except Exception:
