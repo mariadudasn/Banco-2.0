@@ -61,6 +61,7 @@ def main():
 
                         if validacao == 'ACESSO LIBERADO':
                             print("ACESSO LIBERADO")
+                            os.system("pause")
                             os.system("cls")
                             print ("O QUE DESEJA FAZER?")
                             print (" ")
@@ -129,8 +130,32 @@ def main():
                                         banco.excluirConta()
 
                                 case 6:
+                                    os.system("cls")
                                     print("LISTA DE CLIENTES CADASTRADOS")
-                                    banco.getClientes()
+                                    clientes = banco.getClientes()
+                                    for cpf, info in clientes.items():
+                                        print(f"CPF: {cpf}")
+                                        for chave, valor in info.items():
+                                            print(f"{chave}: {valor}")
+                                        print("-" * 20)                                    
+                                    os.system("pause")
+                                    print (" ")
+                                    print("O QUE DESEJA FAZER? \n [1] VOLTAR \n [2] VOLTAR AO MENU INICIAL \n [3] SAIR")
+                                    op3 = int(input(">> "))
+
+                                    if op3 == 1:
+                                        print ("VOLTANDO...")
+
+                                    elif op3 == 2:
+                                        print ("VOLTANDO AO MENU INICIAL...")
+                                        break
+
+                                    elif op3 == 2:
+                                        print ("SAINDO...")
+                                        y = 1
+                                
+                                    else: 
+                                        op_invalida()
 
                                 case 7:
                                     print("VOLTANDO AO MENU INICIAL...")
