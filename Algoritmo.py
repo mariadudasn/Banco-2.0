@@ -63,7 +63,7 @@ def main():
 
                         if validacao == 'ACESSO LIBERADO':
                             os.system("cls")
-                            op2 = int(input("[1] DEPÓSITO \n [2] SAQUE \n [3] TRANSFERÊNCIA \n [4] ALTERAR DADOS \n [5] EXCLUIR CONTA  \n [6] VOLTAR AO MENU INICIAL \n \n Digite a opção desejada: "))
+                            op2 = int(input("[1] DEPÓSITO \n [2] SAQUE \n [3] TRANSFERÊNCIA \n [4] ALTERAR DADOS \n [5] EXCLUIR CONTA \n [6] LISTAR CLIENTES \n [7] VOLTAR AO MENU INICIAL \n \n Digite a opção desejada: "))
                             match op2:
                                 case 1:
                                     print("DEPÓSITO")
@@ -97,7 +97,7 @@ def main():
                                     if validacao4 == 'ACESSO LIBERADO':
                                         print("Digite o cpf do destinatário: ")
                                         cpfdes = input(">> ")
-                                        validacao5 = banco.validarDestinatario(cpfdes)
+                                        validacao5 = banco.validarClientecpf(cpfdes)
 
                                         if validacao5 == 'CLIENTE ENCONTRADO':
                                             print("Digite o valor que deseja transferir: ")
@@ -107,7 +107,21 @@ def main():
                                     else: 
                                         print("Senha incorreta")
 
+                                case 4:
+                                    print("ATUALIZAR DADOS")
+                                    cpf = input("Digite o CPF do cliente a ser atualizado: ")
+                                    cliente = banco.validarClientecpf(cpf)
+                                    if cliente:
+                                        novo_nome = input("Digite o novo nome (ou pressione Enter para manter o atual): ")
+                                        novo_cpf = input("Digite o novo CPF (ou pressione Enter para manter o atual): ")
+                                        novo_email = input("Digite o novo email (ou pressione Enter para manter o atual): ")
+                                        nova_idade = input("Digite a nova idade (ou pressione Enter para manter o atual): ")
+                                        nova_senha = input("Digite a nova senha para acesso do sistema (ou pressione Enter para manter o atual): ")
+                                        nova_senhaMovimentacoes = input("Digite a nova senha para liberação de movimentações de dinheiro (ou pressione Enter para manter o atual): ")
+                                        banco.atualizarCadastro(novo_nome, novo_cpf, novo_email, nova_idade,nova_senha, nova_senhaMovimentacoes)
 
+                                case 5: 
+                                    pass
                     except Exception:
                         op_invalida()
 

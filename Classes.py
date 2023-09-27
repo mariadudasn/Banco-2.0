@@ -18,8 +18,9 @@ class Banco:
                 return "ACESSO LIBERADO"
             else:
                 return "ACESSO NEGADO"
-            
-    def validarDestinatario (self,cpf):
+    
+    
+    def validarClientecpf (self,cpf):
         for cliente in self.clientes:
             if cliente["CPF"] == cpf:
                 return "CLIENTE ENCONTRADO"
@@ -32,6 +33,21 @@ class Banco:
                 return "ACESSO LIBERADO"
             else:
                 return "ACESSO NEGADO"
+            
+    def atualizarCadastro(self, nome=None, cpf=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
+        if nome:
+            self.nome = nome
+        if cpf:
+            self.cpf = cpf
+        if email:
+            self.email = email
+        if idade:
+            self.idade = idade
+        if senha:
+            self.senha = senha
+        if senhaMovimentacoes:
+            self.senhaMovimentacoes = senhaMovimentacoes
+        print("Cadastro atualizado com sucesso.")
 
     # def excluir_conta(self):
     #     del self
