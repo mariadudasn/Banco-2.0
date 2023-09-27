@@ -178,8 +178,9 @@ def main():
                                     print("SAINDO...")
                                     os.system("pause")
                                     os.system("cls")
+                                    False
                                     y = 1
-                                    break
+                                    
 
                                 else:
                                     op_invalida()
