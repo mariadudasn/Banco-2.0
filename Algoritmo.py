@@ -12,6 +12,7 @@ def main():
     cliente = Cliente()
     banco = Banco()
     
+    y = 0
     while y == 0:
         try:
             print ("BEM-VINDO AO BANCO MMALT-PAY!")
@@ -140,7 +141,9 @@ def main():
 
                                 case _:
                                     op_invalida()
-
+                        else:
+                            ("Senha ou CPF inválidos")
+                            
                     except Exception:
                         op_invalida()
                 
