@@ -30,7 +30,8 @@ def main():
                         email = input("Email: ")
                         idade = int(input("Idade: "))
                         senha = input("Digite sua senha: ")
-                        banco.cadastrarCliente(nome, cpf, email, idade, senha)
+                        senhaMovimentacoes = input("Digite uma senha para realizar transferências: ")
+                        banco.cadastrarCliente(nome, cpf, email, idade, senha, senhaMovimentacoes)
 
                         if idade < 18:
                             print("\nDesculpe, você não pode ter uma conta se sua idade for menor de 18 anos.")     
@@ -72,7 +73,16 @@ def main():
                                     cliente.sacar()
                                 case 3:
                                     print("TRANSFERÊNCIA")
-                                    cliente.sacar()
+                                    print (f"Seu saldo atual é de R${getSaldo()}")
+                                    print("Digite sua senha para realizar a traferência: ")
+                                    senham = input(">> ")
+
+                                    validacao4 = banco.validarSenha(senham)
+                                    if validacao4 == 'ACESSO LIBERADO':
+                                        print("Digite o cpf do destinatário: ")
+                                        cpfdes = input(">> ")
+                                        validacao5 = banco.validarCliente()
+
                     except Exception:
                         op_invalida()
 
