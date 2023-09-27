@@ -66,10 +66,10 @@ def main():
                             match op2:
                                 case 1:
                                     print("DEPÓSITO")
-                                    cliente.transferencia()
+                                    cliente.depositar()
                                 case 2:
                                     print("SAQUE")
-                                    cliente.depositar()
+                                    cliente.sacar()
                                 case 3:
                                     print("TRANSFERÊNCIA")
                                     cliente.sacar()

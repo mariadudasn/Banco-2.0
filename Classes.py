@@ -18,9 +18,9 @@ class Banco:
             else:
                 return "ACESSO NEGADO. Digite os dados novamente ou faça seu cadastro."
 
-    def excluir_conta(self):
-        del self
-        print("Cliente excluído com sucesso.")
+    # def excluir_conta(self):
+    #     del self
+    #     print("Cliente excluído com sucesso.")
 
  
 class Cliente:
@@ -28,34 +28,31 @@ class Cliente:
         self.saldo = 0
 
     def sacar(self, valor):
-        if(self.__if_saque(valor)):
-            self.__saldo -= valor
-
+        if self.saldo >= valor:
+            self.saldo -= valor
+            print(f"Saque de R${valor:.2f} realizado. Novo saldo: R${self.saldo:.2f}") 
         else:
-            print(f'o valor de {valor} passou o limite para saque')
+            print(f'O valor de R${valor} passou do saldo que você possui.')
 
-
-    def depositar (self, valor, nome, cpf, saldo):
+    def depositar (self, valor):
         if valor > 0:
             self.saldo += valor
-            self.nome = nome
-            self.cpf = cpf
             print(f"Depósito de R${valor:.2f} realizado. Novo saldo: R${self.saldo:.2f}") 
 
-    def transferencia (self,valor,cliente_a, cliente_b,cpf, senha,saldo):
-        cliente_a.saldo = cliente_a.depositar()
-        cliente_b.saldo = cliente_b.depositar()
+    # def transferencia (self,valor,cliente_a, cliente_b,cpf, senha,saldo):
+    #     cliente_a.saldo = cliente_a.depositar()
+    #     cliente_b.saldo = cliente_b.depositar()
             
-        cliente_a = Banco.validar_cliente_por_cpf_e_senha()
+    #     cliente_a = Banco.validar_cliente_por_cpf_e_senha()
 
-        if cpf and senha in clientes:
-            cliente_b = int (input("Informe o CPF do destinatário",cpf))
-            for cpf, in clientes:
-                valor = float (input("Informe a quantia que deseja transferir:"))
-                cliente_b.saldo = cliente_b.saldo + valor
-                cliente_a.saldo = cliente_a.saldo - valor
-                print ("Transferencia no valor de R$",valor, "concluída")
-            else:
-                print ("Usuário não encontrado")
-        else:
-            print ("Usuário não encontrado")
+    #     if cpf and senha in clientes:
+    #         cliente_b = int (input("Informe o CPF do destinatário",cpf))
+    #         for cpf, in clientes:
+    #             valor = float (input("Informe a quantia que deseja transferir:"))
+    #             cliente_b.saldo = cliente_b.saldo + valor
+    #             cliente_a.saldo = cliente_a.saldo - valor
+    #             print ("Transferencia no valor de R$",valor, "concluída")
+    #         else:
+    #             print ("Usuário não encontrado")
+    #     else:
+    #         print ("Usuário não encontrado")
