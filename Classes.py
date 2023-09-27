@@ -8,8 +8,8 @@ class Banco:
     def cadastrarCliente (self, cliente):
         self.clientes[cliente.cpf] = {
             'Nome': cliente.nome, 
-            'Email:': cliente.email, 
-            'Idade:':cliente.idade, 
+            'Email': cliente.email, 
+            'Idade':cliente.idade, 
             'Senha': cliente.senha, 
             'Senha para movimentações': cliente.senhaMovimentacoes,
             'Saldo': cliente.saldo,
@@ -39,11 +39,9 @@ class Banco:
         else:
             return "CPF não encontrado"
             
-    def atualizarCadastro(self, nome=None, cpf=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
+    def atualizarCadastro(self, nome=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
         if nome:
             self.nome = nome
-        if cpf:
-            self.cpf = cpf
         if email:
             self.email = email
         if idade:
@@ -52,7 +50,9 @@ class Banco:
             self.senha = senha
         if senhaMovimentacoes:
             self.senhaMovimentacoes = senhaMovimentacoes
-        print("Cadastro atualizado com sucesso.")
+            print("Cadastro atualizado com sucesso.")
+        else:
+            print("CPF não encontrado.")
 
     def excluirConta(self, cpf):
         if cpf in self.clientes:
