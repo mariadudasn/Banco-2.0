@@ -23,7 +23,6 @@ def main():
             menu = int(input(">> "))
             match menu:
                 case 1:
-                    try:
                         os.system("cls")
                         print("Preencha as informações abaixo para se cadastrar: \n")
                         nome = input("Nome: ")
@@ -50,12 +49,8 @@ def main():
                     
                         else: #Opção inválida
                             op_invalida()
-                            
-                    except Exception:
-                        op_invalida()
 
                 case 2:
-                    try:
                         os.system("cls")
                         print("Preencha as informações para acessar sua conta: \n")
                         cpf = int(input("CPF: "))
@@ -144,9 +139,6 @@ def main():
                         else:
                             ("Senha ou CPF inválidos")
                             
-                    except Exception:
-                        op_invalida()
-                
                 case 3:
                     y = 1
                 
