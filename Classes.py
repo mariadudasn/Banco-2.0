@@ -7,12 +7,6 @@ class Banco:
         return self.clientes
     
     def cadastrarCliente (self, nome, cpf, email, idade, senha, senhaMovimentacoes):
-        self.nome = nome
-        self.cpf = cpf
-        self.email = email
-        self.idade = idade
-        self.senha = senha
-        self.senhaMovimentacoes = senhaMovimentacoes
         self.clientes[cpf] = {'Nome': nome, 'Email:': email, 'Idade:':idade, 'Senha': senha, 'Senha para movimentações': senhaMovimentacoes}
      
     def validarCliente(self, cpf, senha):
@@ -57,7 +51,13 @@ class Banco:
 
  
 class Cliente:
-    def __init__(self):
+    def __init__(self, nome, cpf, email, idade, senha, senhaMovimentacoes):
+        self.nome = nome
+        self.cpf = cpf
+        self.email = email
+        self.idade = idade
+        self.senha = senha
+        self.senhaMovimentacoes = senhaMovimentacoes
         self.saldo = 0
     
     def sacar(self, valor):
