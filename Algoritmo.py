@@ -61,6 +61,7 @@ def main():
 
                         if validacao == 'ACESSO LIBERADO':
                             print("ACESSO LIBERADO")
+                            cliente = Cliente(nome, cpf, email, idade, senha, senhaMovimentacoes)
                             os.system("pause")
                             os.system("cls")
                             print ("O QUE DESEJA FAZER?")
@@ -72,7 +73,7 @@ def main():
                                     print("Digite sua senha para realizar o depósito: ")
                                     senham1 = input(">> ")
 
-                                    validacao2 = banco.validarSenha(senham1)
+                                    validacao2 = banco.validarSenha(senham1, cliente)
                                     if validacao2 == 'ACESSO LIBERADO':
                                         cliente.depositar()
                                     else: 
@@ -83,7 +84,7 @@ def main():
                                     print("Digite sua senha para realizar o saque: ")
                                     senham2 = input(">> ")
 
-                                    validacao3 = banco.validarSenha(senham2)
+                                    validacao3 = banco.validarSenha(senham2, cliente)
                                     if validacao3 == 'ACESSO LIBERADO':
                                         cliente.sacar()
                                     else: 
@@ -120,7 +121,9 @@ def main():
                                         nova_idade = input("Digite a nova idade (ou pressione Enter para manter o atual): ")
                                         nova_senha = input("Digite a nova senha para acesso do sistema (ou pressione Enter para manter o atual): ")
                                         nova_senhaMovimentacoes = input("Digite a nova senha para liberação de movimentações de dinheiro (ou pressione Enter para manter o atual): ")
-                                        banco.atualizarCadastro(novo_nome, novo_cpf, novo_email, nova_idade,nova_senha, nova_senhaMovimentacoes)
+                                        
+                                        cliente_atualizado = Cliente(novo_nome, novo_cpf, novo_email, nova_idade,nova_senha, nova_senhaMovimentacoes)
+                                        banco.atualizarCadastro(cliente_atualizado)
 
                                 case 5: 
                                     print("EXCLUIR CONTA")
