@@ -31,10 +31,10 @@ class Banco:
             return "CLIENTE NÃO ENCONTRADO"
     
     def validarSenha (self, senhaMovimentacoes):
-        for cliente in self.clientes.values():
-            if cliente["Senha para movimentações"] == senhaMovimentacoes:
-                return "ACESSO LIBERADO"
-        return "ACESSO NEGADO"
+        if self.clientes["Senha para movimentações"] == senhaMovimentacoes:
+            return "ACESSO LIBERADO"
+        else:
+            return "ACESSO NEGADO"
             
     def atualizarCadastro(self, nome=None, cpf=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
         if nome:
