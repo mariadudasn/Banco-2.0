@@ -70,10 +70,12 @@ def main():
                             match op2:
                                 case 1:
                                     print("DEPÓSITO")
+                                    print("Digite seu cpf para realizar o depósito: ")
+                                    cpf1 = input(">> ")
                                     print("Digite sua senha para realizar o depósito: ")
                                     senham1 = input(">> ")
 
-                                    validacao2 = banco.validarSenha(senham1, cliente)
+                                    validacao2 = banco.validarSenha(cpf1, senham1)
                                     if validacao2 == 'ACESSO LIBERADO':
                                         cliente.depositar()
                                     else: 
@@ -81,10 +83,12 @@ def main():
 
                                 case 2:
                                     print("SAQUE")
+                                    print("Digite seu cpf para realizar o depósito: ")
+                                    cpf2 = input(">> ")
                                     print("Digite sua senha para realizar o saque: ")
                                     senham2 = input(">> ")
 
-                                    validacao3 = banco.validarSenha(senham2, cliente)
+                                    validacao3 = banco.validarSenha(cpf2, senham2)
                                     if validacao3 == 'ACESSO LIBERADO':
                                         cliente.sacar()
                                     else: 
@@ -93,10 +97,12 @@ def main():
                                 case 3:
                                     print("TRANSFERÊNCIA")
                                     print (f"Seu saldo atual é de R${getSaldo()}")
+                                    print("Digite seu cpf para realizar o depósito: ")
+                                    cpf3 = input(">> ")
                                     print("Digite sua senha para realizar a traferência: ")
                                     senham3 = input(">> ")
 
-                                    validacao4 = banco.validarSenha(senham3)
+                                    validacao4 = banco.validarSenha(cpf3, senham3)
                                     if validacao4 == 'ACESSO LIBERADO':
                                         print("Digite o cpf do destinatário: ")
                                         cpfdes = input(">> ")

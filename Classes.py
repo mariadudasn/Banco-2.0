@@ -1,4 +1,3 @@
-clientes = []
 class Banco:
     def __init__(self):
         self.clientes = {}
@@ -12,7 +11,8 @@ class Banco:
             'Email:': cliente.email, 
             'Idade:':cliente.idade, 
             'Senha': cliente.senha, 
-            'Senha para movimentações': cliente.senhaMovimentacoes
+            'Senha para movimentações': cliente.senhaMovimentacoes,
+            'Saldo': cliente.saldo,
             }
 
     def validarCliente(self, cpf, senha):
@@ -30,11 +30,14 @@ class Banco:
         else:
             return "CLIENTE NÃO ENCONTRADO"
     
-    def validarSenha (self, senhaMovimentacoes):
-        if self.clientes["Senha para movimentações"] == senhaMovimentacoes:
-            return "ACESSO LIBERADO"
+    def validarSenha (self, cpf, senhaMovimentacoes):
+        if cpf in self.clientes:
+            if self.clientes[cpf]["Senha para movimentações"] == senhaMovimentacoes:
+                return "ACESSO LIBERADO"
+            else:
+                return "ACESSO NEGADO"
         else:
-            return "ACESSO NEGADO"
+            return "CPF não encontrado"
             
     def atualizarCadastro(self, nome=None, cpf=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
         if nome:
@@ -51,9 +54,12 @@ class Banco:
             self.senhaMovimentacoes = senhaMovimentacoes
         print("Cadastro atualizado com sucesso.")
 
-    def excluirConta(self):
-        del self
-        print("Cliente excluído com sucesso.")
+    def excluirConta(self, cpf):
+        if cpf in self.clientes:
+            del self.clientes[cpf]
+            print("Cliente excluído com sucesso.")
+        else:
+            print("CPF não encontrado.")
 
  
 class Cliente:
