@@ -9,4 +9,5 @@ Requisitos mínimos:
 - Excluir cliente;
 - Alterar cliente;
 - Tranferência entre contas de clientes;
-- Deposito e saque de dinheiro.
+- Deposito e saque de dinheiro;
+- Listar clientes.
