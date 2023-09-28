@@ -40,7 +40,7 @@ class Banco:
             return "CPF não encontrado"
             
     def atualizarCadastro(self, cpf, nome=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
-        if cpf in self.clientes: 
+        if cpf in self.clientes:
             if nome:
                 self.nome = nome
             if email:

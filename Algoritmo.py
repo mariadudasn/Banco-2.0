@@ -67,7 +67,7 @@ def main():
                             while True:
                                 print ("O QUE DESEJA FAZER?")
                                 print (" ")
-                                op2 = int(input(" [1] DEPÓSITO \n [2] SAQUE \n [3] TRANSFERÊNCIA \n [4] ALTERAR DADOS \n [5] EXCLUIR CONTA \n [6] LISTAR CLIENTES \n [7] VOLTAR AO MENU INICIAL \n [8] SAIR \n \n Digite a opção desejada: "))
+                                op2 = int(input(" [1] DEPÓSITO \n [2] SAQUE \n [3] TRANSFERÊNCIA \n [4] ALTERAR DADOS \n [5] EXCLUIR CONTA \n [6] VOLTAR AO MENU INICIAL \n [7] SAIR \n \n Digite a opção desejada: "))
                                 
                                 if op2 == 1:
                                     print("DEPÓSITO")
@@ -78,7 +78,6 @@ def main():
                                     if validacao2 == 'ACESSO LIBERADO':
                                         print("Digite o valor a ser depositado: ")
                                         valor = float(input(">> "))
-                                        cliente = banco.clientes[cpf]
                                         cliente.depositar(valor)
                                     else: 
                                         print("Senha incorreta")
@@ -93,7 +92,6 @@ def main():
                                     validacao3 = banco.validarSenha(cpf, senhaMovimentacoes)
                                     if validacao3 == 'ACESSO LIBERADO':
                                         valor = float(input(">> "))
-                                        cliente = banco.clientes[cpf]
                                         cliente.sacar(valor)
                                     else: 
                                         print("Senha incorreta")
@@ -114,7 +112,6 @@ def main():
                                             print("Digite o valor que deseja transferir: ")
                                             valor = float(input(">> "))
                                             destinatario = banco.clientes [cpfdes]
-                                            cliente = banco.clientes[cpf]
                                             cliente.transferencia(valor, destinatario)
                                     else: 
                                         print("Senha incorreta")
@@ -142,46 +139,16 @@ def main():
                                         banco.excluirConta()
 
                                 elif op2 == 6:
-                                    os.system("cls")
-                                    print("LISTA DE CLIENTES CADASTRADOS")
-                                    clientes = banco.getClientes()
-                                    for cpf, info in clientes.items():
-                                        print(f"CPF: {cpf}")
-                                        for chave, valor in info.items():
-                                            print(f"{chave}: {valor}")
-                                        print("-" * 20)                                    
-                                    os.system("pause")
-                                    print (" ")
-                                    print("O QUE DESEJA FAZER? \n [1] VOLTAR \n [2] VOLTAR AO MENU INICIAL \n [3] SAIR")
-                                    op3 = int(input(">> "))
-
-                                    if op3 == 1:
-                                        print ("VOLTANDO...")
-
-                                    elif op3 == 2:
-                                        print ("VOLTANDO AO MENU INICIAL...")
-                                        break
-
-                                    elif op3 == 2:
-                                        print ("SAINDO...")
-                                        y = 1
-                                    
-                                    else: 
-                                        op_invalida()
-
-                                elif op2 == 7:
                                     print("VOLTANDO AO MENU INICIAL...")
                                     os.system("pause")
                                     os.system("cls")
 
-                                elif op2 == 8:
+                                elif op2 == 7:
                                     print("SAINDO...")
                                     os.system("pause")
                                     os.system("cls")
-                                    False
                                     y = 1
                                     
-
                                 else:
                                     op_invalida()
 
