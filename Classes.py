@@ -66,14 +66,14 @@ class Banco:
 
  
 class Cliente:
-    def __init__(self, nome, cpf, email, idade, senha, senhaMovimentacoes):
+    def __init__(self, nome, cpf, email, idade, senha, senhaMovimentacoes, saldo=0):
         self.nome = nome
         self.cpf = cpf
         self.email = email
         self.idade = idade
         self.senha = senha
         self.senhaMovimentacoes = senhaMovimentacoes
-        self.saldo = 0
+        self.saldo = saldo
     
     def sacar(self, valor):
         if self.saldo >= valor:
