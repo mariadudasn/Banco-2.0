@@ -11,7 +11,6 @@ class Banco:
             'Email': cliente.email, 
             'Idade':cliente.idade, 
             'Senha': cliente.senha, 
-            'Senha para movimentações': cliente.senhaMovimentacoes,
             'Saldo': cliente.saldo,
             }
 
@@ -29,18 +28,14 @@ class Banco:
             return "CLIENTE ENCONTRADO"
         else:
             return "CLIENTE NÃO ENCONTRADO"
-    
-    def validarSenha (self, cpf, senhaMovimentacoes):
-        if cpf in self.clientes:
-            if self.clientes[cpf]["Senha para movimentações"] == senhaMovimentacoes:
-                return self.clientes[cpf]["Senha para movimentações"] == senhaMovimentacoes
-            else:
-                print("Senha incorreta.")
-                return None 
+        
+    def validarClientesenha (self,senha):
+        if senha in self.clientes:
+            return "ACESSO LIBERADO"
         else:
-            return "CPF não encontrado"
+            return "Senha incorreta"
             
-    def atualizarCadastro(self, cpf, nome=None, email=None, idade=None, senha=None, senhaMovimentacoes=None):
+    def atualizarCadastro(self, cpf, nome=None, email=None, idade=None, senha=None):
         if cpf in self.clientes:
             if nome:
                 self.nome = nome
@@ -50,8 +45,6 @@ class Banco:
                 self.idade = idade
             if senha:
                 self.senha = senha
-            if senhaMovimentacoes:
-                self.senhaMovimentacoes = senhaMovimentacoes
                 print("Cadastro atualizado com sucesso.")
             else:
                 print("CPF não encontrado.")
@@ -73,7 +66,6 @@ class Cliente:
         self.email = email
         self.idade = idade
         self.senha = senha
-        self.senhaMovimentacoes = senhaMovimentacoes
         self.saldo = saldo
     
     def sacar(self, valor):

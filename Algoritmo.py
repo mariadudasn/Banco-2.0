@@ -33,9 +33,8 @@ def main():
                             email = input("Email: ")
                             idade = int(input("Idade: "))
                             senha = input("Digite sua senha: ")
-                            senhaMovimentacoes = input("Digite uma senha para realizar transferências: ")
 
-                            cliente = Cliente(nome, cpf, email, idade, senha, senhaMovimentacoes)
+                            cliente = Cliente(nome, cpf, email, idade, senha)
                             banco.cadastrarCliente(cliente)
 
                             if idade < 18:
@@ -77,56 +76,54 @@ def main():
                                     if op2 == 1:
                                         os.system("cls")
                                         print("DEPÓSITO")
-                                        print("Digite sua senha para realizar o depósito: ")
-                                        senhaMovimentacoes= input(">> ")
 
-                                        validacao2 = banco.validarSenha(cpf, senhaMovimentacoes)
-                                        if validacao2 == 'ACESSO LIBERADO':
+                                        senha = input("Digite sua senha novamente: ")
+                                        cliente = banco.validarClientesenha(senha)
+
+                                        if cliente == "ACESSO LIBERADO":
+
+                                            print(" ")
                                             print("Digite o valor a ser depositado: ")
                                             valor = float(input(">> "))
-                                            cliente_info = banco.clientes[cpf]
-                                            cliente = Cliente(cliente_info['Nome'], cpf, cliente_info['Email'], cliente_info['Idade'], cliente_info['Senha'], cliente_info['Senha para movimentações'])
+                                            print (" ")
+          
                                             cliente.depositar(valor)
-                                        else: 
-                                            print("Senha incorreta")
 
-                                        os.system("pause")
+                                            os.system("pause")
+                                        
+                                        else:
+                                            print ("Senha incorreta")
 
                                     elif op2 == 2:
                                         os.system("cls")
                                         print("SAQUE")
-                                        print("Digite sua senha para realizar o saque: ")
-                                        senhaMovimentacoes = input(">> ")
 
-                                        validacao3 = banco.validarSenha(cpf, senhaMovimentacoes)
-                                        if validacao3 == 'ACESSO LIBERADO':
-                                            valor = float(input(">> "))
-                                            cliente_info = banco.clientes[cpf]
-                                            cliente = Cliente(cliente_info['Nome'], cpf, cliente_info['Email'], cliente_info['Idade'], cliente_info['Senha'], cliente_info['Senha para movimentações'])
-                                            cliente.sacar(valor)
-                                        else: 
-                                            print("Senha incorreta")
+                                        print (" ")
+                                        print ("Digite o valor a ser sacado: ")
+                                        valor = float(input(">> "))
+                                        print (" ")
+                                        
+                                        cliente.sacar(valor)
+
+                                        os.system("pause")
                                             
                                     elif op2 == 3:
                                         os.system("cls")
                                         print("TRANSFERÊNCIA")
                                         print (f"Seu saldo atual é de R${cliente.getSaldo():.2f}")
-                                        print("Digite sua senha para realizar a traferência: ")
-                                        senhaMovimentacoes = input(">> ")
 
-                                        validacao4 = banco.validarSenha(cpf, senhaMovimentacoes)
-                                        if validacao4 == 'ACESSO LIBERADO':
-                                            print("Digite o cpf do destinatário: ")
-                                            cpfdes = int(input(">> "))
-                                            validacao5 = banco.validarClientecpf(cpfdes)
+                                        print (" ")
+                                        print("Digite o cpf do destinatário: ")
+                                        cpfdes = int(input(">> "))
+                                        validacao5 = banco.validarClientecpf(cpfdes)
 
-                                            if validacao5 == 'CLIENTE ENCONTRADO':
-                                                print("Digite o valor que deseja transferir: ")
-                                                valor = float(input(">> "))
-                                                destinatario = banco.clientes [cpfdes]
-                                                cliente.transferencia(valor, destinatario)
-                                        else: 
-                                            print("Senha incorreta")
+                                        if validacao5 == 'CLIENTE ENCONTRADO':
+                                            print("Digite o valor que deseja transferir: ")
+                                            valor = float(input(">> "))
+                                            destinatario = banco.clientes [cpfdes]
+                                            cliente.transferencia(valor, destinatario)
+                             
+                                        os.system("pause")
 
                                     elif op2 == 4:
                                         os.system("cls")
@@ -189,6 +186,7 @@ def main():
                         print("SAINDO...")
                         os.system("pause")
                         os.system("cls")
+                        m = 0
                         y = 1
                     
                     case _:
@@ -196,4 +194,3 @@ def main():
 
         except Exception:
             op_invalida()
-# 
