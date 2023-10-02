@@ -17,37 +17,30 @@ class Banco:
     def validarCliente(self, cpf, senha):
         if cpf in self.clientes:
             if self.clientes[cpf]["Senha"] == senha:
-                return "ACESSO LIBERADO"
+                return self.clientes[cpf]
             else:
-                return "Senha incorreta"
+                return None
         else:
-            return "CPF não encontrado"
+            return None
         
     def validarClientecpf (self,cpf):
         if cpf in self.clientes:
             return "CLIENTE ENCONTRADO"
         else:
             return "CLIENTE NÃO ENCONTRADO"
-        
-    def validarClientesenha (self,senha):
-        if senha in self.clientes:
-            return "ACESSO LIBERADO"
-        else:
-            return "Senha incorreta"
             
     def atualizarCadastro(self, cpf, nome=None, email=None, idade=None, senha=None):
         if cpf in self.clientes:
+            cliente = self.clientes[cpf]
             if nome:
-                self.nome = nome
+                cliente['Nome'] = nome
             if email:
-                self.email = email
+                cliente['Email'] = email
             if idade:
-                self.idade = idade
+                cliente['Idade'] = idade
             if senha:
-                self.senha = senha
-                print("Cadastro atualizado com sucesso.")
-            else:
-                print("CPF não encontrado.")
+                cliente['Senha'] = senha
+            print("Cadastro atualizado com sucesso.")
         else:
             print("CPF não encontrado.")
 
@@ -60,7 +53,7 @@ class Banco:
 
  
 class Cliente:
-    def __init__(self, nome, cpf, email, idade, senha, senhaMovimentacoes, saldo=0):
+    def __init__(self, nome, cpf, email, idade, senha, saldo=0):
         self.nome = nome
         self.cpf = cpf
         self.email = email
