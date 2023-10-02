@@ -60,9 +60,9 @@ def main():
                         print("Preencha as informações para acessar sua conta: \n")
                         cpf = int(input("CPF: "))
                         senha = input("Digite sua senha: ")
-                        cliente = banco.validarCliente(cpf, senha)
+                        validação = banco.validarCliente(cpf, senha)
 
-                        if cliente is not None:
+                        if validação is not None:
                             print("ACESSO LIBERADO")
                             
                             n = 2
@@ -128,20 +128,10 @@ def main():
                                         novo_email = input("Digite o novo email (ou pressione Enter para manter o atual): ")
                                         nova_idade = input("Digite a nova idade (ou pressione Enter para manter o atual): ")
                                         nova_senha = input("Digite a nova senha para acesso do sistema (ou pressione Enter para manter o atual): ")
-                                        nova_senhaMovimentacoes = input("Digite a nova senha para liberação de movimentações de dinheiro (ou pressione Enter para manter o atual): ")
                                                     
-                                        cliente_atualizado = Cliente(novo_nome, novo_cpf, novo_email, nova_idade,nova_senha, nova_senhaMovimentacoes)
-                                        banco.atualizarCadastro(cliente_atualizado)
+                                        banco.atualizarCadastro(novo_nome, novo_cpf, novo_email, nova_idade,nova_senha,)
 
                                 elif op2 == 5:
-                                    os.system("cls")
-                                    print("EXCLUIR CONTA")
-                                    cpf = input("Digite o CPF do cliente a ser excluido: ")
-                                    cliente2 = banco.validarClientecpf(cpf)
-                                    if cliente2 == 'CLIENTE ENCONTRADO':
-                                        banco.excluirConta(cpf)
-
-                                elif op2 == 6:
                                     os.system("cls")
                                     print("LISTA DE CLIENTES CADASTRADOS")
                                     clientes = banco.getClientes()
@@ -149,8 +139,32 @@ def main():
                                         print(f"CPF: {cpf}")
                                         for chave, valor in info.items():
                                             print(f"{chave}: {valor}")
-                                            print("-" * 20) 
-                                            os.system("pause")
+                                        print("-" * 20) 
+                                        os.system("pause")
+                                    
+                                    print (" ")
+                                    print("EXCLUIR CONTA")
+                                    print(" ")
+                                    cpf = input("Digite o CPF do cliente a ser excluido: ")
+                                    resultado = banco.validarClientecpf(cpf)
+                        
+                                    if resultado == 'CLIENTE ENCONTRADO':
+                                        banco.excluirConta()
+                                    
+                                    else:
+                                        print("Cliente não encontrado")
+
+                                elif op2 == 6:
+                                    os.system("cls")
+                                    print("LISTA DE CLIENTES CADASTRADOS")
+                                    print (" ")
+                                    clientes = banco.getClientes()
+                                    for cpf, info in clientes.items():
+                                        print(f"CPF: {cpf}")
+                                        for chave, valor in info.items():
+                                            print(f"{chave}: {valor}")
+                                        print("-" * 20) 
+                                        os.system("pause")
 
                                 elif op2 == 7:
                                     n = 1

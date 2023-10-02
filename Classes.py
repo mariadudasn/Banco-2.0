@@ -45,11 +45,8 @@ class Banco:
             print("CPF não encontrado.")
 
     def excluirConta(self, cpf):
-        if cpf in self.clientes:
-            del self.clientes[cpf]
-            print("Cliente excluído com sucesso.")
-        else:
-            print("CPF não encontrado.")
+        del self.clientes[cpf]
+        print("Cliente excluído.")
 
  
 class Cliente:
