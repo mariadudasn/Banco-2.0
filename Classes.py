@@ -33,9 +33,10 @@ class Banco:
     def validarSenha (self, cpf, senhaMovimentacoes):
         if cpf in self.clientes:
             if self.clientes[cpf]["Senha para movimentações"] == senhaMovimentacoes:
-                return "ACESSO LIBERADO"
+                return self.clientes[cpf]["Senha para movimentações"] == senhaMovimentacoes
             else:
-                return "ACESSO NEGADO"
+                print("Senha incorreta.")
+                return None 
         else:
             return "CPF não encontrado"
             

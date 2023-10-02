@@ -76,14 +76,15 @@ def main():
                                     print("Digite sua senha para realizar o depósito: ")
                                     senhaMovimentacoes= input(">> ")
 
-                                    validacao2 = banco.validarSenha(cpf, senhaMovimentacoes)
-                                    if validacao2 == 'ACESSO LIBERADO':
+                                    cliente = banco.validarSenha(cpf, senhaMovimentacoes)
+
+                                    if cliente:
                                         print("Digite o valor a ser depositado: ")
                                         valor = float(input(">> "))
-                                        cliente_info = banco.clientes[cpf]
-                                        cliente = Cliente(cliente_info['Nome'], cpf, cliente_info['Email'], cliente_info['Idade'], cliente_info['Senha'], cliente_info['Senha para movimentações'])
+                                        # cliente = banco.clientes[senhaMovimentacoes]
+                                        # cliente = Cliente(cliente['Nome'], cpf, cliente['Email'], cliente['Idade'], cliente['Senha'], cliente['Senha para movimentações'])
                                         cliente.depositar(valor)
-                                    else: 
+                                    else:
                                         print("Senha incorreta")
 
                                     os.system("pause")
@@ -140,6 +141,8 @@ def main():
                                         cliente_atualizado = Cliente(novo_nome, novo_cpf, novo_email, nova_idade,nova_senha, nova_senhaMovimentacoes)
                                         banco.atualizarCadastro(cliente_atualizado)
 
+                                        os.system("pause")
+
                                 elif op2 == 5:
                                     os.system("cls")
                                     print("EXCLUIR CONTA")
@@ -147,6 +150,7 @@ def main():
                                     cliente2 = banco.validarClientecpf(cpf)
                                     if cliente2 == 'CLIENTE ENCONTRADO':
                                         banco.excluirConta()
+                                        os.system("pause")
 
                                 elif op2 == 6:
                                     os.system("cls")
