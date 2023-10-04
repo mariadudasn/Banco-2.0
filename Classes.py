@@ -27,7 +27,6 @@ class Banco:
         if cpf in self.clientes:
             return self.clientes[cpf]
         else:
-            # print("Cliente não encontrado.")
             return None
             
     def atualizarCadastro(self, cpf, nome=None, email=None, idade=None, senha=None):
