@@ -25,9 +25,10 @@ class Banco:
         
     def validarClientecpf (self,cpf):
         if cpf in self.clientes:
-            return "CLIENTE ENCONTRADO"
+            return self.clientes[cpf]
         else:
-            return "CLIENTE NÃO ENCONTRADO"
+            # print("Cliente não encontrado.")
+            return None
             
     def atualizarCadastro(self, cpf, nome=None, email=None, idade=None, senha=None):
         if cpf in self.clientes:
@@ -45,12 +46,16 @@ class Banco:
             print("CPF não encontrado.")
 
     def excluirConta(self, cpf):
-        del self.clientes[cpf]
-        print("Cliente excluído.")
+        if cpf in self.clientes:
+            del self.clientes[cpf]
+            print("Cliente excluído.")
+        else:
+            print("CPF não encontrado.")
+    
 
  
 class Cliente:
-    def __init__(self, nome, cpf, email, idade, senha, saldo=0):
+    def __init__(self, nome, cpf, email, idade, senha, saldo):
         self.nome = nome
         self.cpf = cpf
         self.email = email
@@ -74,7 +79,7 @@ class Cliente:
         return self.saldo
 
     def transferencia (self, valor, destinatario):
-        if self.saldo >= valor:
+        if valor > 0 and self.saldo >= valor:
             self.saldo -= valor
             destinatario.depositar(valor)
             print(f"Transferência de R${valor:.2f} realizada para {destinatario.nome}. Novo saldo: R${self.saldo:.2f}")

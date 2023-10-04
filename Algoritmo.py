@@ -33,8 +33,9 @@ def main():
                         email = input("Email: ")
                         idade = int(input("Idade: "))
                         senha = input("Digite sua senha: ")
+                        saldo = float(input("Qual o saldo inicial? "))
 
-                        cliente = Cliente(nome, cpf, email, idade, senha)
+                        cliente = Cliente(nome, cpf, email, idade, senha, saldo)
                         banco.cadastrarCliente(cliente)
 
                         if idade < 18:
@@ -75,7 +76,8 @@ def main():
                                 if op2 == 1:
                                     os.system("cls")
                                     print("DEPÓSITO")
-
+                                    print (f"Seu saldo atual é de R${cliente.getSaldo():.2f}")
+                                    
                                     print(" ")
                                     print("Digite o valor a ser depositado: ")
                                     valor = float(input(">> "))
@@ -89,6 +91,7 @@ def main():
                                 elif op2 == 2:
                                     os.system("cls")
                                     print("SAQUE")
+                                    print (f"Seu saldo atual é de R${cliente.getSaldo():.2f}")
 
                                     print (" ")
                                     print ("Digite o valor a ser sacado: ")
@@ -120,16 +123,20 @@ def main():
                                 elif op2 == 4:
                                     os.system("cls")
                                     print("ATUALIZAR DADOS")
-                                    cpf = input("Digite o CPF do cliente a ser atualizado: ")
-                                    clientee = banco.validarClientecpf(cpf)
-                                    if clientee == "CLIENTE ENCONTRADO":
+                                    cpf = input("Digite o CPF: ")
+                                    senha = input("Digite a senha: ")
+                                    validacaoo = banco.validarCliente(cpf, senha)
+
+                                    if validacaoo is not None:
                                         novo_nome = input("Digite o novo nome (ou pressione Enter para manter o atual): ")
                                         novo_cpf = input("Digite o novo CPF (ou pressione Enter para manter o atual): ")
                                         novo_email = input("Digite o novo email (ou pressione Enter para manter o atual): ")
                                         nova_idade = input("Digite a nova idade (ou pressione Enter para manter o atual): ")
                                         nova_senha = input("Digite a nova senha para acesso do sistema (ou pressione Enter para manter o atual): ")
                                                     
-                                        banco.atualizarCadastro(novo_nome, novo_cpf, novo_email, nova_idade,nova_senha,)
+                                        banco.atualizarCadastro(cpf, novo_nome, novo_cpf, novo_email, nova_idade, nova_senha)
+
+                                    os.system("pause")
 
                                 elif op2 == 5:
                                     os.system("cls")
@@ -146,10 +153,11 @@ def main():
                                     print("EXCLUIR CONTA")
                                     print(" ")
                                     cpf = input("Digite o CPF do cliente a ser excluido: ")
-                                    resultado = banco.validarClientecpf(cpf)
-                        
-                                    if resultado == 'CLIENTE ENCONTRADO':
-                                        banco.excluirConta()
+                                    senha = input("Digite a senha: ")
+                                    clientee = banco.validarCliente(cpf, senha)
+
+                                    if clientee is not None:
+                                        banco.excluirConta(cpf)
                                     
                                     else:
                                         print("Cliente não encontrado")
